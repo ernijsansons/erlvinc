@@ -9,8 +9,7 @@ export const runtime = 'edge';
 export async function POST(request: NextRequest) {
   try {
     // Get database from Cloudflare binding
-    const env = (request as any).env;
-    const db = getDB(env);
+    const db = getDB();
     const lucia = initializeLucia(db);
 
     // Get session cookie

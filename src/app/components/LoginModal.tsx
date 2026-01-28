@@ -30,7 +30,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                 body: JSON.stringify({ email, password }),
             });
 
-            const data = await response.json();
+            const data = await response.json() as { error?: string; success?: boolean };
 
             if (!response.ok) {
                 setError(data.error || 'Login failed');

@@ -10,7 +10,8 @@ export const runtime = 'edge';
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, password } = await request.json();
+    const body = await request.json() as { email: string; password: string };
+    const { email, password } = body;
 
     // Validate input
     if (!email || !password) {
@@ -21,8 +22,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Get database from Cloudflare binding
-    const env = (request as any).env;
-    const db = getDB(env);
+    const db = getDB();
     const lucia = initializeLucia(db);
 
     // Find user

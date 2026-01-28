@@ -26,7 +26,7 @@ export default function DashboardPage() {
         }
         return res.json();
       })
-      .then(data => {
+      .then((data: any) => {
         if (data) {
           setUser(data.user);
         }
